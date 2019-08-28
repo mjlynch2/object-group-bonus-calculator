@@ -71,7 +71,7 @@ let employeeBonusInfo = new EmployeeBonus(
   name = employee.name,
   bonusPercentage = bonusPercentCalc(employee),
   totalCompensation = totalCompensationCalc(employee.annualSalary, this.bonusPercentage),
-  totalBonus = totalBonusCalc()
+  totalBonus = totalBonusCalc(employee.annualSalary, this.bonusPercentage)
 )
 
   // 
@@ -116,17 +116,14 @@ if (bonusPercent > .13) {
 } else if (bonusPercent < 0) {
   bonusPercent = 0;
 }
-
 return bonusPercent;
 }
 
 function totalCompensationCalc (salary, bonusPercent) {
-  console.log(salary, bonusPercent);
-  
-  return (salary + (salary*bonusPercent));
+  return (salary * (1 + bonusPercent));
 }
 
-function totalBonusCalc (){
-
+function totalBonusCalc (salary, bonusPercent){
+return ((salary * (1 + bonusPercent)) - salary)
 }
 console.log( employees );
